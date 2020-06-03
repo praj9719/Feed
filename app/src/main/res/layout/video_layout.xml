@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/round"
+    android:layout_margin="5dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/vl_layout"
+        android:background="@drawable/round_white"
+        android:layout_margin="2dp"
+        android:weightSum="13"
+        android:layout_width="match_parent"
+        android:layout_height="140dp">
+        <ImageView
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:id="@+id/vl_image"
+            android:background="@drawable/round_white"
+            android:src="@drawable/ic_launcher_foreground"
+            android:scaleType="centerCrop"
+            android:layout_weight="6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="6"
+            android:layout_width="0dp"
+            android:weightSum="4"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/vl_name"
+                android:fontFamily="casual"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="132 - for a friend.mkv"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"/>
+            <TextView
+                android:id="@+id/vl_details"
+                android:layout_marginLeft="15dp"
+                android:padding="5dp"
+                android:text="Size: 38MB"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/vl_more"
+            android:paddingTop="20dp"
+            android:drawableTop="@drawable/ic_more"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

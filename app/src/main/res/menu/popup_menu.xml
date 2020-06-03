@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/popup_hide"
+        android:title="Hide Media" />
+    <item
+        android:id="@+id/popup_select"
+        android:title="Select Media" />
+    <item
+        android:id="@+id/popup_restore"
+        android:title="Restore Media" />
+</menu>

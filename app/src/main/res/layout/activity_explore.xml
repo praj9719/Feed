@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExploreActivity">
+    <LinearLayout
+        android:background="@color/colorWhite"
+        android:id="@+id/ae_linear_layout_top"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/ae_back"
+                android:background="@drawable/ic_back"
+                android:layout_marginHorizontal="5dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <TextView
+                android:id="@+id/ae_file_name"
+                android:layout_marginHorizontal="5dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="FolderName"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+            <Button
+                android:id="@+id/ae_hide"
+                android:background="@drawable/ic_hidden"
+                android:layout_width="40dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/ae_address"
+            android:text="Address"
+            android:paddingHorizontal="5dp"
+            android:gravity="center"
+            android:ellipsize="start"
+            android:paddingBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ae_recycler"
+        android:layout_below="@id/ae_linear_layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

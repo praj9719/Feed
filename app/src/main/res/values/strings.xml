@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Feed</string>
+    <array name="sort">
+        <item>Inbox</item>
+        <item>Watched</item>
+        <item>Upcoming</item>
+    </array>
+</resources>

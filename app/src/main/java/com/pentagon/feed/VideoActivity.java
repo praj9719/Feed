@@ -18,7 +18,6 @@ public class VideoActivity extends AppCompatActivity {
         videoView = findViewById(R.id.video_player);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         filePath = getIntent().getStringExtra("filePath");
-        //getSupportActionBar().hide();
         playerVideo();
     }
 
@@ -37,8 +36,7 @@ public class VideoActivity extends AppCompatActivity {
         videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                videoView.setVideoPath(filePath);
-                videoView.start();
+                onBackPressed();
             }
         });
     }

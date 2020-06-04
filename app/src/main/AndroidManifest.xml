@@ -15,7 +15,6 @@
         <activity android:name=".VideoActivity"
             android:screenOrientation="landscape"></activity>
         <activity android:name=".MediaActivity" />
-        <activity android:name=".PreviewActivity" />
         <activity android:name=".ExploreActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

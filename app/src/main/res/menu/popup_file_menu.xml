@@ -2,9 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/popup_banner_remove"
-        android:title="Remove" />
+        android:id="@+id/popup_file_open_with"
+        android:title="Open With" />
     <item
-        android:id="@+id/popup_banner_delete"
+        android:id="@+id/popup_file_delete"
         android:title="Delete" />
 </menu>

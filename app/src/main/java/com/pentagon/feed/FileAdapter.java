@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -105,7 +106,11 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
     }
     private void showPopupMenu(View view){
         PopupMenu popupMenu = new PopupMenu(context, view);
-        popupMenu.inflate(R.menu.popup_menu);
+        if (mList.get(count).isDirectory()){
+            popupMenu.inflate(R.menu.popup_menu);
+        }else {
+            popupMenu.inflate(R.menu.popup_file_menu);
+        }
         popupMenu.setOnMenuItemClickListener(this);
         popupMenu.show();
     }
@@ -122,6 +127,12 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
             case R.id.popup_restore:
                 restoreMedia();
                 return true;
+            case R.id.popup_file_open_with:
+                openWith();
+                return true;
+            case R.id.popup_file_delete:
+                deleteFile();
+                return true;
             default:
                 return false;
         }
@@ -134,15 +145,13 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
                 .setPositiveButton("Hide", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        boolean isHidden = MainActivity.hideMedia(mList.get(count).getPath());
+                        boolean isHidden = MainActivity.hideMedia(mList.get(count).getPath(), context);
                         if (isHidden){
+                            notifyItemRemoved(count);
                             Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(context, "FileAdapter: hideMedia: Failed", Toast.LENGTH_SHORT).show();
                         }
-//                        context.startActivity(new Intent(context, PreviewActivity.class)
-//                                .putExtra("filePath", mList.get(count).getPath())
-//                                .putExtra("command", "Save"));
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -179,27 +188,18 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
     }
 
     private void restoreMedia() {
-
-    }
-
-
-    private void selectFile() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle(mList.get(count).getName())
                 .setMessage(mList.get(count).getPath())
-                .setPositiveButton("Select", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Restore", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        boolean isSaved = MainActivity.hideMedia(mList.get(count).getPath());
-                        if (isSaved){
+                        boolean isHidden = MainActivity.unHideMedia(mList.get(count).getPath());
+                        if (isHidden){
                             Toast.makeText(context, "Successful", Toast.LENGTH_SHORT).show();
-                            //context.startActivity(new Intent(context, MainActivity.class));
                         }else {
-                            Toast.makeText(context, "Invalid Argument", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "FileAdapter: restoreMedia: Failed", Toast.LENGTH_SHORT).show();
                         }
-//                        context.startActivity(new Intent(context, PreviewActivity.class)
-//                                .putExtra("filePath", mList.get(count).getPath())
-//                                .putExtra("command", "Save"));
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -211,64 +211,25 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
         builder.show();
     }
 
-
-
-}
-
-
-
-
-
-/*
-
-    private void hideFile() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(mList.get(count).getName())
-                .setMessage(mList.get(count).getPath())
-                .setPositiveButton("Hide/Show", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        File file = mList.get(count);
-                        if (file.isDirectory()){
-                            if (file.isHidden()){
-                                File newFile = new File(file.getParent()+"/"+file.getName().split("\\.")[1]);
-                                if (file.renameTo(newFile)){
-                                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
-                                }else {
-                                    Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                            else {
-                                File newFile = new File(file.getParent()+"/."+file.getName());
-                                if (file.renameTo(newFile)){
-                                    Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
-                                }else {
-                                    Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }
-                        notifyDataSetChanged();
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-        builder.show();
+    private void openWith() {
+        if (mList.get(count).getName().endsWith("mp4") || mList.get(count).getName().endsWith("mkv")) {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.parse(mList.get(count).getPath()), "video/*");
+            context.startActivity(intent);
+        } else {
+            Toast.makeText(context, "Not a video", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void deleteFile() {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle(mList.get(count).getName())
-                .setMessage(mList.get(count).getPath())
+        builder.setMessage(mList.get(count).getPath())
+                .setTitle(mList.get(count).getName())
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (mList.get(count).delete()){
                             Toast.makeText(context, "File Deleted", Toast.LENGTH_SHORT).show();
-                            notifyDataSetChanged();
                         }else {
                             Toast.makeText(context, "Failed To Delete", Toast.LENGTH_SHORT).show();
                         }
@@ -283,6 +244,4 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
         builder.show();
     }
 
-
-
- */
+}

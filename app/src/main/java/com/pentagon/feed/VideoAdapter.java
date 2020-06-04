@@ -53,11 +53,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoHolder>
             if (position == 0){
                 holder.mMore.setVisibility(View.VISIBLE);
             }
-//            Bitmap bitmap = ThumbnailUtils.createVideoThumbnail(file.getPath(), MediaStore.Images.Thumbnails.FULL_SCREEN_KIND);
-//            holder.mImage.setImageBitmap(bitmap);
-//            holder.mImage.setImageResource(R.drawable.civil);
-        }else {
-//            holder.mImage.setImageResource(R.drawable.civil);
         }
         Glide.with(context)
                 .load(Uri.fromFile(file))
@@ -71,8 +66,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoHolder>
                     intent.putExtra("filePath", file.getPath());
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     context.startActivity(intent);
-//                    Intent intent = new Intent(Intent.ACTION_VIEW);
-//                    intent.setDataAndType(Uri.parse(file.getPath()), "video/*");
+
                 }
             });
         }
@@ -121,7 +115,6 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoHolder>
             mLayout = itemView.findViewById(R.id.vl_layout);
         }
     }
-
 
     private void showPopupMenu(View view){
         PopupMenu popupMenu = new PopupMenu(context, view);

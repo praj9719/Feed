@@ -34,7 +34,7 @@ import java.util.List;
 
 public class MediaActivity extends AppCompatActivity {
     private static final String TAG = "MediaActivity";
-    private static final int REQUEST_PERMISSTION = 21;
+    private static final int REQUEST_PERMISSION = 44;
     private PlayList playList;
     private File directory;
     private boolean mPermission = false;
@@ -54,7 +54,7 @@ public class MediaActivity extends AppCompatActivity {
         Intent intent = getIntent();
         fileName = intent.getStringExtra("fileName");
         initFile(fileName);
-        permissonForVideo();
+        permissionForVideo();
         mList = new ArrayList<>();
         mSortList = new ArrayList<>();
         mRecycler = findViewById(R.id.media_recycler);
@@ -195,7 +195,7 @@ public class MediaActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_PERMISSTION){
+        if (requestCode == REQUEST_PERMISSION){
             if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 mPermission = true;
             }else {
@@ -204,13 +204,13 @@ public class MediaActivity extends AppCompatActivity {
 
         }
     }
-    private void permissonForVideo() {
+    private void permissionForVideo() {
         if ((ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED)){
             if ((ActivityCompat.shouldShowRequestPermissionRationale(MediaActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE))){
 
             }else {
-                ActivityCompat.requestPermissions(MediaActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSTION);
+                ActivityCompat.requestPermissions(MediaActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_PERMISSION);
             }
         }else {
             mPermission = true;

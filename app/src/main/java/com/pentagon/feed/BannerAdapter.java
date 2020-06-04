@@ -90,20 +90,22 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.BannerView
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()){
             case R.id.popup_banner_remove:
-                boolean isUnhide = MainActivity.unHideMedia(mList.get(count).getAddress());
-                if (isUnhide){
-                    Toast.makeText(mContext, "Success", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(mContext, "Failed to unHide", Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(mContext, "Disabled", Toast.LENGTH_SHORT).show();
+//                boolean isUnhide = MainActivity.unHideMedia(mList.get(count).getAddress());
+//                if (isUnhide){
+//                    Toast.makeText(mContext, "Success", Toast.LENGTH_SHORT).show();
+//                }else {
+//                    Toast.makeText(mContext, "Failed to unHide", Toast.LENGTH_SHORT).show();
+//                }
                 return true;
             case R.id.popup_banner_delete:
-                boolean isDeleted = MainActivity.deleteMedia(mList.get(count).getAddress());
-                if (isDeleted){
-                    Toast.makeText(mContext, "Deleted from database", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(mContext, "Remove file first", Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(mContext, "Disabled", Toast.LENGTH_SHORT).show();
+//                boolean isDeleted = MainActivity.deleteMedia(mList.get(count).getAddress());
+//                if (isDeleted){
+//                    Toast.makeText(mContext, "Deleted from database", Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(mContext, "Remove file first", Toast.LENGTH_SHORT).show();
+//                }
             default:
                 return false;
         }

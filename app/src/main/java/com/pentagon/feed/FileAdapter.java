@@ -125,13 +125,16 @@ public class FileAdapter extends RecyclerView.Adapter<FileAdapter.FileViewHolder
                 selectMedia();
                 return true;
             case R.id.popup_restore:
-                restoreMedia();
+                Toast.makeText(context, "Disabled", Toast.LENGTH_SHORT).show();
+//                restoreMedia();
                 return true;
             case R.id.popup_file_open_with:
-                openWith();
+                Toast.makeText(context, "Disabled", Toast.LENGTH_SHORT).show();
+//                openWith();
                 return true;
             case R.id.popup_file_delete:
-                deleteFile();
+                Toast.makeText(context, "Disabled", Toast.LENGTH_SHORT).show();
+//                deleteFile();
                 return true;
             default:
                 return false;

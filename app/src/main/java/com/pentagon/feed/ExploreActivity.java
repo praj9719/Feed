@@ -139,14 +139,16 @@ public class ExploreActivity extends AppCompatActivity implements PopupMenu.OnMe
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()){
             case R.id.popup_explore_new_file:
-                EditDialog editDialog = new EditDialog();
-                editDialog.show(getSupportFragmentManager(), "Edit Dialog");
-                mCreateFile = true;
+                Toast.makeText(this, "Disabled", Toast.LENGTH_SHORT).show();
+//                EditDialog editDialog = new EditDialog();
+//                editDialog.show(getSupportFragmentManager(), "Edit Dialog");
+//                mCreateFile = true;
                 return true;
             case R.id.popup_explore_new_folder:
-                EditDialog editDialog1 = new EditDialog();
-                editDialog1.show(getSupportFragmentManager(), "Edit Dialog");
-                mCreateFolder = true;
+                Toast.makeText(this, "Disabled", Toast.LENGTH_SHORT).show();
+//                EditDialog editDialog1 = new EditDialog();
+//                editDialog1.show(getSupportFragmentManager(), "Edit Dialog");
+//                mCreateFolder = true;
                 return true;
         }
         return false;
